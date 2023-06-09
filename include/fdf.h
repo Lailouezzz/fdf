@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/07 00:29:30 by ale-boud         ###   ########.fr       */
+/*   Created: 2023/06/08 12:27:48 by ale-boud          #+#    #+#             */
+/*   Updated: 2023/06/08 14:46:28 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <libft.h>
-#include <mlx.h>
+#ifndef  FDF_H
+# define FDF_H
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*mlx_win;
-}	t_vars;
+# include "fdf_vecmat.h"
 
-int	main(void)
-{
-	t_vars	vars;
-
-	vars.mlx = mlx_init();
-	vars.mlx_win = mlx_new_window(vars.mlx, 200, 200, "Hello wolrd");
-	if (vars.mlx_win == NULL)
-		return (-1);
-	mlx_loop(vars.mlx);
-	return (0);
-}
+#endif

@@ -6,7 +6,7 @@
 #    By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 23:28:51 by ale-boud          #+#    #+#              #
-#    Updated: 2023/06/07 00:11:02 by ale-boud         ###   ########.fr        #
+#    Updated: 2023/06/08 15:07:14 by ale-boud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CFLAGS := -g $(CWARN)
 
 # Preprocessor flag
 
-CPPFLAGS := -I./libft -I./minilibx -I./ 
+CPPFLAGS := -I./libft -I./minilibx -I./include 
 
 # Linker
 
@@ -46,12 +46,17 @@ LDFLAGS := -Llibft -Lminilibx
 # ---
 
 NAME := fdf
-LIBFT := libft.a
 
-SRCS := main.c mlx_color.c
-OBJS := $(SRCS:%.c=%.o)
+SRC_DIR := ./src
+SRCS := main.c mlx_color.c fdf_vecmat1.c fdf_vecmat2.c fdf_vecmat3.c
+
+SRCS := $(SRCS:%=$(SRC_DIR)/%)
+OBJ_DIR := ./build
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
 SRCS_BONUS := 
-OBJS_BONUS := $(SRCS_BONUS:%.c=%.o)
+SRCS_BONUS := $(SRCS_BONUS:%=$(SRC_DIR)/%)
+OBJS_BONUS := $(SRCS_BONUS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # ---
 #  General targets
@@ -64,7 +69,7 @@ all: $(NAME)
 # Mostly clean (clean everything without the end result)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS) $(LIBFT)
+	$(RM) -r $(OBJ_DIR)
 	$(MAKE) clean -C libft
 
 # Clean everything
@@ -97,5 +102,6 @@ minilibx/libmlx.a:
 $(NAME): $(OBJS) $(LIBS)
 	$(LD) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
