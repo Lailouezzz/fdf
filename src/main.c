@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/08 17:52:37 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:59:39 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(void)
 	t_vec3	vec2;
 	t_mat4	mat1;
 
-	vec1 = (t_vec3){0, 0, -1};
-	vec2 = (t_vec3){0, 0, 4};
+	vec1 = (t_vec3){0, 0, 1};
+	vec2 = (t_vec3){0, 1, 0};
 	vec1 = fdf_normavec3(vec1);
 	printf("{%lf, %lf, %lf}\n", vec1.x, vec1.y, vec1.z);
 	printf("{%lf, %lf, %lf}\n", vec2.x, vec2.y, vec2.z);

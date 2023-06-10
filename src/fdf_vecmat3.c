@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:56:58 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/08 17:40:28 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:58:08 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,51 @@ t_mat4	fdf_mat4xmat4(const t_mat4 mat1, const t_mat4 mat2)
 	return (rmat);
 }
 
+t_angle	fdf_vec2angle(const t_vec2 nvec)
+{
+	if (nvec.x == 0 && nvec.y == 0)
+		return (0.);
+	if (nvec.x == 0 && nvec.y > 0)
+		return (atan(1. / 0.));
+	else if (nvec.x == 0 && nvec.y < 0)
+		return (-atan(1. / 0.));
+	if (nvec.x >= 0)
+	{
+		if (nvec.y >= 0)
+			return (atan(nvec.y / nvec.x));
+		else
+			return (-atan(-nvec.y / nvec.x));
+	}
+	else
+	{
+		if (nvec.y >= 0)
+			return (atan(-nvec.x / nvec.y) + atan(1. / 0.));
+		else
+			return (-(atan(-nvec.x / -nvec.y) + atan(1. / 0.)));
+	}
+}
+
 t_mat4	fdf_rotatmat4(const	t_vec3 nvec)
 {
 	t_mat4	mat1;
 	t_mat4	mat2;
-	t_angle	angxz;
-	t_angle	angyz;
+	t_angle	angxy;
+	t_angle	angzy;
 
-	angxz = atan(nvec.x / nvec.z);
-	angyz = atan(nvec.y / nvec.z);
-	if (angxz != angxz)
-		angxz = 0;
-	if (angyz != angyz)
-		angyz = 0;
-	printf("%lf %lf\n", angxz, angyz);
+	angxy = fdf_vec2angle((t_vec2){nvec.y, nvec.x});
+	angzy = fdf_vec2angle((t_vec2){nvec.z, nvec.y});
+	if (angzy < 0)
+		angzy = -angzy;
+	printf("%lf %lf\n", angxy, angzy);
 	mat1 = fdf_mat4ident();
 	mat2 = fdf_mat4ident();
-	mat1.y[1] = cos(angxz);
-	mat1.y[2] = -sin(angxz);
-	mat1.z[1] = sin(angxz);
-	mat1.z[2] = cos(angxz);
-	mat2.x[0] = cos(angyz);
-	mat2.x[2] = sin(angyz);
-	mat2.z[0] = -sin(angyz);
-	mat2.z[2] = cos(angyz);
+	mat1.y[1] = cos(angzy);
+	mat1.y[2] = -sin(angzy);
+	mat1.z[1] = sin(angzy);
+	mat1.z[2] = cos(angzy);
+	mat2.x[0] = cos(angxy);
+	mat2.x[1] = -sin(angxy);
+	mat2.y[0] = sin(angxy);
+	mat2.y[1] = cos(angxy);
 	return (fdf_mat4xmat4(mat1, mat2));
 }
