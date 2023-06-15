@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 12:27:48 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:15:29 by ale-boud         ###   ########.fr       */
+/*   Created: 2023/06/15 01:49:29 by ale-boud          #+#    #+#             */
+/*   Updated: 2023/06/15 15:31:31 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FDF_H
-# define FDF_H
+#ifndef  FDF_UTILS_H
+# define FDF_UTILS_H
 
-# include "fdf_vecmat.h"
-# include "fdf_render.h"
+int	fdf_abs(int n);
 
 #endif

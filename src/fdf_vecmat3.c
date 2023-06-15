@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:56:58 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/10 16:58:08 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:21:04 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,12 @@ t_mat4	fdf_rotatmat4(const	t_vec3 nvec)
 	mat2.y[0] = sin(angxy);
 	mat2.y[1] = cos(angxy);
 	return (fdf_mat4xmat4(mat1, mat2));
+}
+
+t_vec3	fdf_invervec3(t_vec3 vec)
+{
+	vec.x = -vec.x;
+	vec.y = -vec.y;
+	vec.z = -vec.z;
+	return (vec);
 }

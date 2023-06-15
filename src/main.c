@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/10 16:59:39 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:58:30 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@ typedef struct s_vars
 
 int	main(void)
 {
+	t_rendctx	*ctx;
+	t_map		map;
+
+	map.width = 2;
+	map.height = 2;
+	map.map[0] = (t_vec3){0, 0, 0};
+	map.map[1] = (t_vec3){0, 10, 10};
+	map.map[2] = (t_vec3){10, 0, 0};
+	map.map[3] = (t_vec3){10, 10, 0};
+	ctx = fdf_ctx_init();
+	fdf_ctx_init_buffer(&ctx);
+	ctx->cam = (t_vec3){-200, -200, 0};
+	ctx->focal = (t_vec3){1, 1, 1};
+	fdf_print_map_buffer(ctx, &map);
+	fdf_print_buffer(ctx);
+	getchar();
+	return (0);
+
 	t_vec3	vec1;
 	t_vec3	vec2;
 	t_mat4	mat1;
