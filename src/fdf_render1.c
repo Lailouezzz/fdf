@@ -6,12 +6,13 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:37:16 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:44:54 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:34:58 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <mlx.h>
+#include <libft.h>
 #include "fdf.h"
 
 t_rendctx	*fdf_ctx_init(void)
@@ -45,6 +46,8 @@ void	fdf_ctx_init_buffer(t_rendctx **ctx)
 	{
 		/* TODO : destroy *ctx,  *ctx = NULL */
 	}
+	(*ctx)->zbuf.zbuf
+		= ft_calloc(SCREEN_WIDTH * SCREEN_HEIGHT, sizeof(*(*ctx)->zbuf.zbuf));
 	(*ctx)->fbuf.data = mlx_get_data_addr((*ctx)->fbuf.img,
 			&(*ctx)->fbuf.bits_per_pixel, &(*ctx)->fbuf.line_len,
 			&(*ctx)->fbuf.endian);

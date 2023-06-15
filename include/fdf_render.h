@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:27:14 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:21:50 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:32:19 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_point
 
 typedef struct s_point3
 {
-	int	x;
-	int	y;
-	int	z;
+	int		x;
+	int		y;
+	t_coord	z;
 }	t_point3;
 
 typedef struct s_framebuffer {
@@ -64,6 +64,7 @@ void		fdf_ctx_init_buffer(t_rendctx **ctx);
 /* Return 1 in success */
 int			fdf_ctx_clear_buffer(t_rendctx *ctx);
 void		fdf_draw_line(t_rendctx *ctx, t_point p1, t_point p2, t_color c);
+void		fdf_draw3_line(t_rendctx *ctx, t_point3 p1, t_point3 p2, t_color c);
 void		fdf_print_map_buffer(t_rendctx *ctx, const t_map *map);
 
 #endif

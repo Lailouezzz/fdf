@@ -6,12 +6,13 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:54:13 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:56:20 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <mlx.h>
+#include <libft.h>
 #include "fdf_utils.h"
 #include "fdf.h"
 
@@ -19,6 +20,8 @@ int	fdf_ctx_clear_buffer(t_rendctx *ctx)
 {
 	mlx_destroy_image(ctx->mlx, ctx->fbuf.img);
 	ctx->fbuf.img = NULL;
+	ft_memset(ctx->zbuf.zbuf, 0,
+		SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(*ctx->zbuf.zbuf));
 	return (1);
 }
 
@@ -65,11 +68,34 @@ void	fdf_draw_line(t_rendctx *ctx, t_point p1, t_point p2, t_color c)
 	fdf_pixel_put(ctx, p1, c);
 }
 
+static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
+	const t_map *map)
+{
+	t_vec3	p1;
+	t_vec3	p2;
+
+	p1 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
+				fdf_vec3tvec4(map->map[p.x + p.y * map->width], 0.2)));
+	if (p.x != 0)
+	{
+		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
+					fdf_vec3tvec4(map->map[p.x - 1 + p.y * map->width], 0.2)));
+		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
+			(t_point){p2.x, p2.y}, 0x00FFFFFF);
+	}
+	if (p.y + 1 != map->height)
+	{
+		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
+					fdf_vec3tvec4(map->map[p.x + (p.y + 1) * map->width],
+						0.2)));
+		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
+			(t_point){p2.x, p2.y}, 0x00FFFFFF);
+	}
+}
+
 void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 {
 	t_mat4	mat;
-	t_vec3	p1;
-	t_vec3	p2;
 	int		x;
 	int		y;
 
@@ -79,21 +105,29 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	while (y < map->height)
 	{
 		x = 0;
-		while (x + 1 < map->width)
+		while (x < map->width)
 		{
-			p1 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
-						fdf_vec3tvec4(map->map[x + y * map->width], 0.2)));
+			fdf_print_map_rend_line(ctx, (t_point){x, y}, mat, map);
 			++x;
-			p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
-						fdf_vec3tvec4(map->map[x + y * map->width], 0.2)));
-			fdf_draw_line(ctx, (t_point){p1.x, p1.y}, (t_point){p2.x, p2.y}, 0x00FFFFFF);
-			if (y + 1 < map->height)
-			{
-				p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
-							fdf_vec3tvec4(map->map[(x - 1) + (y + 1) * map->width], 0.2)));
-				fdf_draw_line(ctx, (t_point){p1.x, p1.y}, (t_point){p2.x, p2.y}, 0x00FFFFFF);
-			}
 		}
 		++y;
 	}
+}
+
+void	fdf_pixel3_put(t_rendctx *ctx, t_point3 p, t_color c)
+{
+	char	*dst;
+	t_coord	*zdst;
+
+	if (p.x < 0 || p.y < 0 || p.x >= SCREEN_WIDTH || p.y >= SCREEN_HEIGHT
+		|| p.z <= 0.)
+		return ;
+	zdst = ctx->zbuf.zbuf
+		+ (p.y * SCREEN_WIDTH + p.x);
+	dst = ctx->fbuf.data
+		+ (p.y * ctx->fbuf.line_len + p.x * (ctx->fbuf.bits_per_pixel / 8));
+	if (p.z >= *zdst && *zdst != 0)
+		return ;
+	*zdst = p.z;
+	*(t_color *)dst = c;
 }

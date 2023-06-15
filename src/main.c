@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:58:30 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:01:32 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(void)
 	map.width = 2;
 	map.height = 2;
 	map.map[0] = (t_vec3){0, 0, 0};
-	map.map[1] = (t_vec3){0, 10, 10};
+	map.map[1] = (t_vec3){0, 10, 5};
 	map.map[2] = (t_vec3){10, 0, 0};
 	map.map[3] = (t_vec3){10, 10, 0};
 	ctx = fdf_ctx_init();
