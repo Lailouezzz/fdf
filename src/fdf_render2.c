@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 17:56:20 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/16 12:43:06 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	fdf_ctx_clear_buffer(t_rendctx *ctx)
 {
 	mlx_destroy_image(ctx->mlx, ctx->fbuf.img);
 	ctx->fbuf.img = NULL;
-	ft_memset(ctx->zbuf.zbuf, 0,
-		SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(*ctx->zbuf.zbuf));
+	free(ctx->zbuf.zbuf);
 	return (1);
 }
 

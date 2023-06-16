@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.h                                        :+:      :+:    :+:   */
+/*   fdf_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 01:49:29 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 12:41:16 by ale-boud         ###   ########.fr       */
+/*   Created: 2023/06/16 12:04:30 by ale-boud          #+#    #+#             */
+/*   Updated: 2023/06/16 12:40:56 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FDF_UTILS_H
-# define FDF_UTILS_H
+#include <stdlib.h>
+#include <unistd.h>
+#include <libft.h>
+#include "fdf_utils.h"
+#include "fdf_map.h"
 
-int		fdf_abs(int n);
-
-#endif
