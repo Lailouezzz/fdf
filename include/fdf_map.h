@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:14:26 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 12:44:45 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:32:07 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "fdf_vecmat.h"
 
 typedef struct s_map {
-	t_vec3	map[4];
+	t_vec3	*map;
 	int		width;
 	int		height;
 }	t_map;

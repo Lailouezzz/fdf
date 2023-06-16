@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:22:41 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:20:34 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:20:15 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_vec4	fdf_vec3tvec4(const t_vec3 vec, t_coord w);
 t_coord	fdf_vec3dista(const t_vec3 vec);
 t_vec3	fdf_vec4tvec3(const t_vec4 vec);
 t_mat4	fdf_transmat4(const t_vec3 vec);
-t_mat4	fdf_rotatmat4(const	t_vec3 nvec);
+t_mat4	fdf_rotatmat4(t_vec3 nvec);
 t_vec3	fdf_normavec3(const t_vec3 vec);
 t_vec3	fdf_invervec3(t_vec3 vec);
 

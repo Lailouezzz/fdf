@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:27:48 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 16:15:29 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:26:45 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 # include "fdf_vecmat.h"
 # include "fdf_render.h"
+# include "fdf_map.h"
 
 #endif

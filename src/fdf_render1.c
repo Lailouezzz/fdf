@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:37:16 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 17:34:58 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:10:22 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_rendctx	*fdf_ctx_init(void)
 		free(ctx);
 		return (NULL);
 	}
+	ctx->z_mul = 6;
 	ctx->fbuf.img = NULL;
 	return (ctx);
 }
@@ -46,8 +47,8 @@ void	fdf_ctx_init_buffer(t_rendctx **ctx)
 	{
 		/* TODO : destroy *ctx,  *ctx = NULL */
 	}
-	(*ctx)->zbuf.zbuf
-		= ft_calloc(SCREEN_WIDTH * SCREEN_HEIGHT, sizeof(*(*ctx)->zbuf.zbuf));
+	/*(*ctx)->zbuf.zbuf
+		= ft_calloc(SCREEN_WIDTH * SCREEN_HEIGHT, sizeof(*(*ctx)->zbuf.zbuf));*/
 	(*ctx)->fbuf.data = mlx_get_data_addr((*ctx)->fbuf.img,
 			&(*ctx)->fbuf.bits_per_pixel, &(*ctx)->fbuf.line_len,
 			&(*ctx)->fbuf.endian);
@@ -57,6 +58,8 @@ void	fdf_pixel_put(t_rendctx *ctx, t_point p, t_color c)
 {
 	char	*dst;
 
+	p.x += (SCREEN_WIDTH / 2);
+	p.y += (SCREEN_HEIGHT / 2);
 	if (p.x < 0 || p.y < 0 || p.x >= SCREEN_WIDTH || p.y >= SCREEN_HEIGHT)
 		return ;
 	dst = ctx->fbuf.data

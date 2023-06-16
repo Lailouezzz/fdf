@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:27:14 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/15 17:32:19 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:09:40 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "fdf_vecmat.h"
 # include "fdf_map.h"
 
-# define SCREEN_WIDTH  520
-# define SCREEN_HEIGHT 520
+# define SCREEN_WIDTH  1920
+# define SCREEN_HEIGHT 1080
 
 typedef int	t_color;
 
@@ -53,6 +53,7 @@ typedef struct s_rendctx {
 	t_zbuffer		zbuf;
 	t_vec3			cam;
 	t_vec3			focal;
+	double			z_mul;
 }	t_rendctx;
 
 void		fdf_pixel_put(t_rendctx *ctx, t_point p, t_color c);
