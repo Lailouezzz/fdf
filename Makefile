@@ -6,7 +6,7 @@
 #    By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 23:28:51 by ale-boud          #+#    #+#              #
-#    Updated: 2023/06/16 16:25:15 by ale-boud         ###   ########.fr        #
+#    Updated: 2023/06/17 20:52:21 by ale-boud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ NAME := fdf
 
 SRC_DIR := ./src
 SRCS := main.c mlx_color.c fdf_vecmat1.c fdf_vecmat2.c fdf_vecmat3.c \
-			fdf_render1.c fdf_render2.c fdf_utils.c fdf_map.c
+			fdf_render1.c fdf_render2.c fdf_utils.c fdf_map.c \
+			fdf_key_hook.c
 
 SRCS := $(SRCS:%=$(SRC_DIR)/%)
 OBJ_DIR := ./build

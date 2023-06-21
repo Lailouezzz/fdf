@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 18:10:39 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:58:31 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 	t_vec3	p2;
 
 	p1 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
-				fdf_vec3tvec4(map->map[p.x + p.y * map->width], 1)));
+				fdf_vec3tvec4(map->map[p.x + p.y * map->width],
+					1. / ctx->zoom)));
 	if (p.x != 0)
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
-					fdf_vec3tvec4(map->map[p.x - 1 + p.y * map->width], 1)));
+					fdf_vec3tvec4(map->map[p.x - 1 + p.y * map->width],
+						1. / ctx->zoom)));
 		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
 			(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
@@ -86,7 +88,7 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x + (p.y + 1) * map->width],
-						1)));
+						1. / ctx->zoom)));
 		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
 			(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
@@ -99,7 +101,8 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	int		x;
 	int		y;
 
-	mat = fdf_transmat4(fdf_invervec3(ctx->cam));
+	mat = fdf_transmat4(fdf_invervec3(fdf_vec4tvec3(
+					fdf_vec3tvec4(ctx->cam, 1. / ctx->zoom))));
 	mat = fdf_mat4xmat4(fdf_rotatmat4(ctx->focal), mat);
 	z_mulmat = fdf_mat4ident();
 	z_mulmat.z[2] = ctx->z_mul;
