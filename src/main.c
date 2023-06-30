@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/20 02:07:05 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/30 08:38:09 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 
 static void	fdf_default(t_hook_ctx *ctx)
 {
-	ctx->rendctx->cam = (t_vec3){0, 0, 100};
-	ctx->rendctx->focal = (t_vec3){0, 0, -0.5};
-	ctx->rot = 0.;
-	ctx->rendctx->zoom = 20;
-	ctx->rendctx->z_mul = 0.01;
+	ctx->rot = -0.7;
+	ctx->rendctx->zoom = 1000 / ctx->map->width;
+	ctx->rendctx->z_mul = 0.05;
+	ctx->rrot = 0.7;
+	ctx->rendctx->trans = (t_vec2){0., 0.};
 	fdf_key_hook(-1, ctx);
 }
 
@@ -33,7 +33,6 @@ int	main(void)
 	t_rendctx	*rctx;
 	t_map		*map;
 	t_hook_ctx	hctx;
-	double		x;
 
 	map = fdf_read_map(STDIN_FILENO);
 	if (map == NULL)

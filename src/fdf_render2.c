@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/17 20:58:31 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/30 08:58:52 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	z_mulmat = fdf_mat4ident();
 	z_mulmat.z[2] = ctx->z_mul;
 	mat = fdf_mat4xmat4(mat, z_mulmat);
+	mat = fdf_mat4xmat4(
+			fdf_transmat4((t_vec3){ctx->trans.x * ctx->zoom, ctx->trans.y * ctx->zoom, 0.}), mat);
 	y = 0;
 	while (y < map->height)
 	{
@@ -136,4 +138,11 @@ void	fdf_pixel3_put(t_rendctx *ctx, t_point3 p, t_color c)
 		return ;
 	*zdst = p.z;
 	*(t_color *)dst = c;
+}
+
+void	fdf_ctx_destroy(t_rendctx *ctx)
+{
+	mlx_destroy_window(ctx->mlx, ctx->mlx_win);
+	mlx_destroy_display(ctx->mlx);
+	free(ctx);
 }

@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:14:26 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 16:32:07 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:06:23 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ typedef struct s_map {
 }	t_map;
 
 t_map	*fdf_read_map(int fd);
+void	fdf_destroy_map(t_map *map);
 
 #endif

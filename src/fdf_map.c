@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:04:30 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/17 20:47:42 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:07:45 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,10 @@ t_map	*fdf_read_map(int fd)
 	ctx.map->width = 0;
 	ctx.map->height = 0;
 	return (fdf_read_map_aux(fd, &ctx));
+}
+
+void	fdf_destroy_map(t_map *map)
+{
+	free(map->map);
+	free(map);
 }
