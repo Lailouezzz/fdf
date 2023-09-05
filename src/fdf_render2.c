@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/30 08:58:52 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/05 13:36:29 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,6 @@ void	fdf_ctx_destroy(t_rendctx *ctx)
 {
 	mlx_destroy_window(ctx->mlx, ctx->mlx_win);
 	mlx_destroy_display(ctx->mlx);
+	free(ctx->mlx);
 	free(ctx);
 }
