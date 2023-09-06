@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:23:35 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 19:39:52 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:10:41 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fdf_bind_zoom(t_rendctx *rctx, t_keybind key, void *null)
 
 void	fdf_bind_zoom_init(t_binding_ctx *ctx)
 {
-	ctx->rctx->zoom = 1.;
+	ctx->rctx->zoom = 10.;
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ZOOMP],
 		fdf_bind_zoom, KEY_M, NULL);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ZOOMM],

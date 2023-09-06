@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:21:47 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 18:24:44 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:26:41 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_binding_ctx	*fdf_bind_init(t_rendctx *rctx)
 		ctx->bindings[k].st = KEY_STATUS__UP;
 		++k;
 	}
+	ctx->bindings[KEYBIND__EXIT].keycode = KEY_ECHAP;
 	return (ctx);
 }
 
@@ -55,4 +56,9 @@ void	fdf_bind_process(t_binding_ctx *ctx)
 		ctx->bindings[k].curact = KEY_ACTION__NONE;
 		++k;
 	}
+}
+
+void	fdf_bind_destroy(t_binding_ctx *ctx)
+{
+	free(ctx);
 }

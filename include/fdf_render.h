@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:27:14 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 17:25:24 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:10:12 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_rendctx {
 	t_mat4			mat;
 	t_vec3			cam;
 	t_vec3			focal;
-	t_point			trans;
+	t_vec2			trans;
 	double			z_mul;
 	double			zoom;
 }	t_rendctx;
