@@ -6,11 +6,11 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:14:26 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/30 09:06:23 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:22:18 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FDF_MAP_H
+#ifndef FDF_MAP_H
 # define FDF_MAP_H
 
 # include "fdf_vecmat.h"

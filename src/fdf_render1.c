@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:37:16 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/17 20:49:06 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:19:48 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ t_rendctx	*fdf_ctx_init(void)
 	ctx->mlx_win = mlx_new_window(ctx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "FdF");
 	if (ctx->mlx_win == NULL)
 	{
-		/* TODO : free mlx ?*/
+		mlx_destroy_display(ctx->mlx);
+		free(ctx->mlx);
 		free(ctx);
 		return (NULL);
 	}
 	ctx->fbuf.img = NULL;
+	ctx->mat = fdf_mat4ident();
 	return (ctx);
 }
 

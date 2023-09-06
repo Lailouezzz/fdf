@@ -6,11 +6,11 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:27:14 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/30 08:57:41 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:25:24 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FDF_RENDER_H
+#ifndef FDF_RENDER_H
 # define FDF_RENDER_H
 
 # include "fdf_vecmat.h"
@@ -51,9 +51,10 @@ typedef struct s_rendctx {
 	void			*mlx_win;
 	t_framebuffer	fbuf;
 	t_zbuffer		zbuf;
+	t_mat4			mat;
 	t_vec3			cam;
 	t_vec3			focal;
-	t_vec2			trans;
+	t_point			trans;
 	double			z_mul;
 	double			zoom;
 }	t_rendctx;

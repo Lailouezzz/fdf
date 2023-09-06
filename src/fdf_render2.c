@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/05 13:36:29 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:19:25 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	z_mulmat = fdf_mat4ident();
 	z_mulmat.z[2] = ctx->z_mul;
 	mat = fdf_mat4xmat4(mat, z_mulmat);
-	mat = fdf_mat4xmat4(
-			fdf_transmat4((t_vec3){ctx->trans.x * ctx->zoom, ctx->trans.y * ctx->zoom, 0.}), mat);
+	mat = fdf_mat4xmat4(mat, ctx->mat);
 	y = 0;
 	while (y < map->height)
 	{

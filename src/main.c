@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/30 08:38:09 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:41:02 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,51 @@
 #include <math.h>
 #include <time.h>
 #include <mlx.h>
+#include <X11/Xlib.h>
 #include "libft.h"
 #include "fdf.h"
 
-static void	fdf_default(t_hook_ctx *ctx)
+typedef struct s_ctx {
+	t_rendctx		*rctx;
+	t_binding_ctx	*bctx;
+	t_map			*map;
+}	t_ctx;
+
+static int	fdf_loop(t_ctx *ctx)
 {
-	ctx->rot = -0.7;
-	ctx->rendctx->zoom = 1000 / ctx->map->width;
-	ctx->rendctx->z_mul = 0.05;
-	ctx->rrot = 0.7;
-	ctx->rendctx->trans = (t_vec2){0., 0.};
-	fdf_key_hook(-1, ctx);
+	fdf_ctx_init_buffer(&ctx->rctx);
+	fdf_print_map_buffer(ctx->rctx, ctx->map);
+	fdf_print_buffer(ctx->rctx);
+	fdf_ctx_clear_buffer(ctx->rctx);
+	fdf_bind_process(ctx->bctx);
+	return (0);
 }
 
 int	main(void)
 {
-	t_rendctx	*rctx;
-	t_map		*map;
-	t_hook_ctx	hctx;
+	t_ctx	ctx;
 
-	map = fdf_read_map(STDIN_FILENO);
-	if (map == NULL)
+	ctx.map = fdf_read_map(STDIN_FILENO);
+	if (ctx.map == NULL)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	rctx = fdf_ctx_init();
-	hctx.map = map;
-	hctx.rendctx = rctx;
-	fdf_default(&hctx);
-	mlx_hook(rctx->mlx_win, 2, 1L << 0, fdf_key_hook, &hctx);
-	mlx_loop(rctx->mlx);
+	ctx.rctx = fdf_ctx_init();
+	ctx.bctx = fdf_bind_init(ctx.rctx);
+	fdf_bind_zoom_init(ctx.bctx);
+	fdf_bind_z_init(ctx.bctx);
+	if (fdf_bind_rot_init(ctx.bctx) != 0)
+	{
+		fdf_destroy_map(ctx.map);
+		fdf_ctx_destroy(ctx.rctx);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
+	mlx_hook(ctx.rctx->mlx_win, KeyPress, KeyPressMask, _keypress_cb, ctx.bctx);
+	mlx_hook(ctx.rctx->mlx_win, KeyRelease, KeyReleaseMask, _keyrelease_cb,
+		ctx.bctx);
+	mlx_loop_hook(ctx.rctx->mlx, fdf_loop, &ctx);
+	mlx_loop(ctx.rctx->mlx);
 	return (0);
 }

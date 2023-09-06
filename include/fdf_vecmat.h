@@ -6,11 +6,11 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:22:41 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 14:20:15 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:22:56 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FDF_VECMAT_H
+#ifndef FDF_VECMAT_H
 # define FDF_VECMAT_H
 
 typedef double	t_coord;
