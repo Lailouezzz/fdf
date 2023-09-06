@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:04:30 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 17:27:58 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:16:47 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,6 @@ static void	*fdf_read_map_free(t_fdf_read_ctx *ctx)
 
 static t_map	*fdf_read_map_aux(int fd, t_fdf_read_ctx *ctx)
 {
-/* BINDING */
-
-
-
 	int	r;
 	int	nb;
 
