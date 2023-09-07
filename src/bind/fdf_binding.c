@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:21:47 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:26:41 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:27:12 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_binding_ctx	*fdf_bind_init(t_rendctx *rctx)
 	t_binding_ctx	*ctx;
 	int				k;
 
+	if (rctx == NULL)
+		return (NULL);
 	ctx = malloc(sizeof(*ctx));
 	if (ctx == NULL)
 		return (NULL);

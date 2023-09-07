@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:49:29 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:15:37 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	fdf_ctx_clear_buffer(t_rendctx *ctx)
 {
 	ft_memset(ctx->fbuf.data, 0,
 		SCREEN_WIDTH * SCREEN_HEIGHT * ctx->fbuf.bits_per_pixel / 8);
-	/*free(ctx->zbuf.zbuf);*/
 	return (1);
 }
 
@@ -75,12 +74,12 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 
 	p1 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 				fdf_vec3tvec4(map->map[p.x + p.y * map->width],
-					1. / ctx->zoom)));
+					1.)));
 	if (p.x != 0)
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x - 1 + p.y * map->width],
-						1. / ctx->zoom)));
+						1.)));
 		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
 			(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
@@ -88,7 +87,7 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x + (p.y + 1) * map->width],
-						1. / ctx->zoom)));
+						1.)));
 		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
 			(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
@@ -97,7 +96,6 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 {
 	t_mat4	mat;
-	t_mat4	z_mulmat;
 	int		x;
 	int		y;
 	t_vec3	cam;
@@ -105,13 +103,12 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	cam = ctx->cam;
 	cam.x += ctx->trans.x;
 	cam.y += ctx->trans.y;
-	mat = fdf_transmat4(fdf_invervec3(fdf_vec4tvec3(
-					fdf_vec3tvec4(cam, 1. / ctx->zoom))));
+	mat = fdf_mat4ident();
+	mat.z[2] = ctx->z_mul;
+	mat = fdf_mat4xmat4(fdf_transmat4(cam), mat);
 	mat = fdf_mat4xmat4(fdf_rotatmat4(ctx->focal), mat);
-	z_mulmat = fdf_mat4ident();
-	z_mulmat.z[2] = ctx->z_mul;
-	mat = fdf_mat4xmat4(mat, z_mulmat);
-	mat = fdf_mat4xmat4(mat, ctx->mat);
+	mat = fdf_mat4xmat4(ctx->mat, mat);
+	mat.w[3] *= 1. / ctx->zoom;
 	y = 0;
 	while (y < map->height)
 	{
@@ -123,31 +120,4 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 		}
 		++y;
 	}
-}
-
-void	fdf_pixel3_put(t_rendctx *ctx, t_point3 p, t_color c)
-{
-	char	*dst;
-	t_coord	*zdst;
-
-	if (p.x < 0 || p.y < 0 || p.x >= SCREEN_WIDTH || p.y >= SCREEN_HEIGHT
-		|| p.z <= 0.)
-		return ;
-	zdst = ctx->zbuf.zbuf
-		+ (p.y * SCREEN_WIDTH + p.x);
-	dst = ctx->fbuf.data
-		+ (p.y * ctx->fbuf.line_len + p.x * (ctx->fbuf.bits_per_pixel / 8));
-	if (p.z >= *zdst && *zdst != 0)
-		return ;
-	*zdst = p.z;
-	*(t_color *)dst = c;
-}
-
-void	fdf_ctx_destroy(t_rendctx *ctx)
-{
-	mlx_destroy_image(ctx->mlx, ctx->fbuf.img);
-	mlx_destroy_window(ctx->mlx, ctx->mlx_win);
-	mlx_destroy_display(ctx->mlx);
-	free(ctx->mlx);
-	free(ctx);
 }

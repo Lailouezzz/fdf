@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:08:56 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 19:41:13 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:49:41 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	_keypress_cb(int keycode, t_binding_ctx *ctx)
 	bind = fdf_get_binding(keycode, ctx);
 	if (bind != NULL)
 		bind->curact = KEY_ACTION__PRESS;
-	printf("%d\n", keycode);
 	return (0);
 }
 

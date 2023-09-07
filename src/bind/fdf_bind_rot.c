@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:51 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:28:43 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:31:58 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	fdf_bind_rot(t_rendctx *rctx, t_keybind key, t_rotctx *ctx)
 	fdf_bind_rot_update(rctx, ctx);
 }
 
-int	fdf_bind_rot_init(t_binding_ctx *ctx)
+void	fdf_bind_rot_init(t_binding_ctx *ctx)
 {
 	static t_rotctx	rctx;
 
@@ -47,12 +47,11 @@ int	fdf_bind_rot_init(t_binding_ctx *ctx)
 	rctx.y = 0.5;
 	fdf_bind_rot_update(ctx->rctx, &rctx);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ROTUP],
-		fdf_bind_rot, KEY_I, &rctx);
+		(t_func_cb)fdf_bind_rot, KEY_I, &rctx);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ROTDOWN],
-		fdf_bind_rot, KEY_K, &rctx);
+		(t_func_cb)fdf_bind_rot, KEY_K, &rctx);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ROTLEFT],
-		fdf_bind_rot, KEY_J, &rctx);
+		(t_func_cb)fdf_bind_rot, KEY_J, &rctx);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ROTRIGHT],
-		fdf_bind_rot, KEY_L, &rctx);
-	return (0);
+		(t_func_cb)fdf_bind_rot, KEY_L, &rctx);
 }

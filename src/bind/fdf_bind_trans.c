@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:58:58 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:35:21 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:34:36 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	fdf_bind_trans(t_rendctx *rctx, t_keybind key, void *null)
 {
+	(void *)(null);
 	if (key == KEYBIND__TRANSUP)
 		rctx->trans.y -= 4. / rctx->zoom;
 	else if (key == KEYBIND__TRANSDOWN)

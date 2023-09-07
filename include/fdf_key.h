@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:25:43 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:19:09 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:36:50 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define KEY_ECHAP 65307
 # define KEY_N 110
 # define KEY_M 109
+# define KEY_P 112
 # define KEY_I 105
 # define KEY_J 106
 # define KEY_K 107

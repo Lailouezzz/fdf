@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:37:16 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 16:19:48 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:35:53 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ t_rendctx	*fdf_ctx_init(void)
 
 void	fdf_ctx_init_buffer(t_rendctx **ctx)
 {
+	if (*ctx == NULL)
+		return ;
 	(*ctx)->fbuf.img = mlx_new_image((*ctx)->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if ((*ctx)->fbuf.img == NULL)
 	{
-		/* TODO : destroy *ctx,  *ctx = NULL */
+		fdf_ctx_destroy(*ctx);
+		*ctx = NULL;
 	}
-	/*(*ctx)->zbuf.zbuf
-		= ft_calloc(SCREEN_WIDTH * SCREEN_HEIGHT, sizeof(*(*ctx)->zbuf.zbuf));*/
 	(*ctx)->fbuf.data = mlx_get_data_addr((*ctx)->fbuf.img,
 			&(*ctx)->fbuf.bits_per_pixel, &(*ctx)->fbuf.line_len,
 			&(*ctx)->fbuf.endian);

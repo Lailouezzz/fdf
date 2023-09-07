@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:35:00 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:18:45 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:29:12 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_rotctx {
 	float	x;
 	float	y;
 }	t_rotctx;
-int				fdf_bind_rot_init(t_binding_ctx *ctx);
+void			fdf_bind_rot_init(t_binding_ctx *ctx);
 void			fdf_bind_rot(t_rendctx *rctx, t_keybind key, t_rotctx *ctx);
 
 void			fdf_bind_z_init(t_binding_ctx *ctx);
@@ -99,5 +99,11 @@ void			fdf_bind_z(t_rendctx *rctx, t_keybind key, void *null);
 
 void			fdf_bind_trans_init(t_binding_ctx *ctx);
 void			fdf_bind_trans(t_rendctx *rctx, t_keybind key, void *null);
+
+typedef struct s_projctx {
+	int	current;
+}	t_projctx;
+void			fdf_bind_proj_init(t_binding_ctx *ctx);
+void			fdf_bind_proj(t_rendctx *rctx, t_keybind key, t_projctx *ctx);
 
 #endif
