@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/10 21:05:36 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 23:05:31 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void	fdf_draw_line(t_rendctx *ctx, t_point p1, t_point p2, t_color c)
 	fdf_pixel_put(ctx, p1, c);
 }
 
+#define NEAR 40.
+#define FAR 2000.
+
 static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 		const t_map *map)
 {
@@ -75,11 +78,15 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 	p1 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 				fdf_vec3tvec4(map->map[p.x + p.y * map->width],
 					1.)));
+	if (p1.z > FAR || p1.z < 0.)
+		return ;
 	if (p.x != 0)
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x - 1 + p.y * map->width],
 						1.)));
+		if (p2.z > FAR || p2.z < 0.)
+			return ;
 		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
 			(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
@@ -88,6 +95,8 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x + (p.y + 1) * map->width],
 						1.)));
+		if (p2.z > FAR || p2.z < 0.)
+			return ;
 		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
 			(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
@@ -103,8 +112,8 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	mat.z[2] = ctx->z_mul;
 	mat = fdf_mat4xmat4(fdf_transmat4(ctx->cam), mat);
 	mat = fdf_mat4xmat4(fdf_rotatmat4(ctx->focal), mat);
-	mat = fdf_mat4xmat4(ctx->mat, mat);
 	mat = fdf_mat4xmat4(fdf_scalemat4(ctx->zoom), mat);
+	mat = fdf_mat4xmat4(ctx->mat, mat);
 	y = 0;
 	while (y < map->height)
 	{

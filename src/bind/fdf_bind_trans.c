@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:58:58 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/10 22:00:06 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 23:10:33 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	fdf_bind_trans(t_rendctx *rctx, t_keybind key, void *null)
 
 void	fdf_bind_trans_init(t_binding_ctx *ctx)
 {
-	ctx->rctx->cam = (t_vec3){0., 0., 20.};
+	ctx->rctx->cam = (t_vec3){0., 0., 40.};
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__TRANSUP],
 		fdf_bind_trans, KEY_W, NULL);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__TRANSLEFT],
