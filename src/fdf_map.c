@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:04:30 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 21:16:47 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 16:42:29 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	fdf_read_map_insert(t_fdf_read_ctx *ctx, const t_coord z)
 	if (ctx->map->width != 0)
 		ctx->map->map[ctx->pos] = (t_vec3){
 			(ctx->pos % ctx->map->width),
-			(t_coord)((ctx->pos / ctx->map->width)) * -1.,
+			(t_coord)((ctx->pos / ctx->map->width)),
 			z};
 	else
 		ctx->map->map[ctx->pos] = (t_vec3){

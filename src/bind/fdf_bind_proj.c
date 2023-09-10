@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:29:23 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/07 16:55:23 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 21:59:41 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 #include <math.h>
 #include "fdf_binding.h"
 
+#define NEAR 40.
+#define FAR 20000.
+
 void	fdf_bind_proj(t_rendctx *rctx, t_keybind key, t_projctx *ctx)
 {
+	(void)(key);
 	if (ctx->current == 0)
 	{
 		ctx->current = 1;
-		rctx->mat = fdf_mat4ident();
-		rctx->mat.x[2] = -1.;
-		rctx->mat.y[2] = -1.;
+		rctx->mat = fdf_mat4empty();
+		rctx->mat.x[0] = NEAR;
+		rctx->mat.y[1] = NEAR;
+		rctx->mat.z[2] = FAR + NEAR;
+		rctx->mat.z[3] = -(NEAR * FAR);
+		rctx->mat.w[2] = 1.;
 	}
 	else
 	{

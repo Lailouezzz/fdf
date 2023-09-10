@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/07 17:15:37 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 21:05:36 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,13 @@ void	fdf_print_map_buffer(t_rendctx *ctx, const t_map *map)
 	t_mat4	mat;
 	int		x;
 	int		y;
-	t_vec3	cam;
 
-	cam = ctx->cam;
-	cam.x += ctx->trans.x;
-	cam.y += ctx->trans.y;
 	mat = fdf_mat4ident();
 	mat.z[2] = ctx->z_mul;
-	mat = fdf_mat4xmat4(fdf_transmat4(cam), mat);
+	mat = fdf_mat4xmat4(fdf_transmat4(ctx->cam), mat);
 	mat = fdf_mat4xmat4(fdf_rotatmat4(ctx->focal), mat);
 	mat = fdf_mat4xmat4(ctx->mat, mat);
-	mat.w[3] *= 1. / ctx->zoom;
+	mat = fdf_mat4xmat4(fdf_scalemat4(ctx->zoom), mat);
 	y = 0;
 	while (y < map->height)
 	{

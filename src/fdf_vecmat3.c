@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:56:58 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 14:21:20 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 17:50:21 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_mat4	fdf_rotatmat4(t_vec3 nvec)
 	angzy = fdf_vec2angle((t_vec2){nvec.z, nvec.y});
 	if (angzy < 0)
 		angzy = -angzy;
+	mat2.x[0] = -1.;
 	mat2.y[1] = cos(angzy);
 	mat2.y[2] = -sin(angzy);
 	mat2.z[1] = sin(angzy);

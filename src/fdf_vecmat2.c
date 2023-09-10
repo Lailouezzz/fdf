@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:31:34 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/08 15:16:21 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:38:03 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ t_mat4	fdf_transmat4(const t_vec3 vec)
 	t_mat4	mat;
 
 	mat = fdf_mat4ident();
-	mat.x[3] = vec.x;
-	mat.y[3] = vec.y;
-	mat.z[3] = vec.z;
+	mat.x[3] = -vec.x;
+	mat.y[3] = -vec.y;
+	mat.z[3] = -vec.z;
 	return (mat);
 }
 

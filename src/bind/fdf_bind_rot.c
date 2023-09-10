@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:51 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/07 15:31:58 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:47:50 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 
 static void	fdf_bind_rot_update(t_rendctx *rctx, t_rotctx *ctx)
 {
-	rctx->cam.x = (cos(ctx->x))
-		* (cos(ctx->y));
-	rctx->cam.y = (-sin(ctx->x))
-		* (-cos(ctx->y));
-	rctx->cam.z = (-sin(ctx->y));
 	rctx->focal.x = -((cos(ctx->x)) * (cos(ctx->y)));
 	rctx->focal.y = -((-sin(ctx->x)) * (-cos(ctx->y)));
 	rctx->focal.z = (-sin(ctx->y));
@@ -29,9 +24,9 @@ static void	fdf_bind_rot_update(t_rendctx *rctx, t_rotctx *ctx)
 void	fdf_bind_rot(t_rendctx *rctx, t_keybind key, t_rotctx *ctx)
 {
 	if (key == KEYBIND__ROTUP)
-		ctx->y += 0.01;
-	else if (key == KEYBIND__ROTDOWN)
 		ctx->y -= 0.01;
+	else if (key == KEYBIND__ROTDOWN)
+		ctx->y += 0.01;
 	if (key == KEYBIND__ROTLEFT)
 		ctx->x -= 0.01;
 	else if (key == KEYBIND__ROTRIGHT)

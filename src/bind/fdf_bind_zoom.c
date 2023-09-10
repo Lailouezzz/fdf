@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:23:35 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:10:41 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:00:08 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	fdf_bind_zoom(t_rendctx *rctx, t_keybind key, void *null)
 {
-	(void *)(null);
+	(void)(null);
 	if (key == KEYBIND__ZOOMP)
 		rctx->zoom *= 1.005;
 	else if (key == KEYBIND__ZOOMM)
