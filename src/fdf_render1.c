@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:37:16 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/10 17:03:19 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:07:19 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_rendctx	*fdf_ctx_init(void)
 		return (NULL);
 	}
 	ctx->fbuf.img = NULL;
-	ctx->mat = fdf_mat4ident();
 	return (ctx);
 }
 

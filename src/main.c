@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/10 17:13:06 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:00:42 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	fdf_init(t_ctx *ctx, const char *fn)
 	}
 	fdf_bind_z_init(ctx->bctx);
 	fdf_bind_zoom_init(ctx->bctx);
-	fdf_bind_trans_init(ctx->bctx);
+	fdf_bind_trans_init(ctx->bctx, ctx->map);
 	fdf_bind_rot_init(ctx->bctx);
 	fdf_bind_proj_init(ctx->bctx);
 	return (EXIT_SUCCESS);

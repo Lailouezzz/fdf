@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:18:51 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/10 19:47:50 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:08:02 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	fdf_bind_rot_init(t_binding_ctx *ctx)
 {
 	static t_rotctx	rctx;
 
-	rctx.x = 0.5;
+	rctx.x = 0.75;
 	rctx.y = 0.5;
 	fdf_bind_rot_update(ctx->rctx, &rctx);
 	fdf_bind_set_status_down_cb(&ctx->bindings[KEYBIND__ROTUP],

@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:27:14 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/06 20:10:12 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:56:48 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "fdf_vecmat.h"
 # include "fdf_map.h"
 
-# define SCREEN_WIDTH  1000
-# define SCREEN_HEIGHT 800
+# define SCREEN_WIDTH  800
+# define SCREEN_HEIGHT 500
 
 typedef int	t_color;
 

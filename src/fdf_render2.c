@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/10 23:05:31 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:04:59 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	fdf_draw_line(t_rendctx *ctx, t_point p1, t_point p2, t_color c)
 	fdf_pixel_put(ctx, p1, c);
 }
 
-#define NEAR 40.
+
+#define NEAR 2.
 #define FAR 2000.
 
 static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
@@ -78,27 +79,23 @@ static void	fdf_print_map_rend_line(t_rendctx *ctx, t_point p, t_mat4 mat,
 	p1 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 				fdf_vec3tvec4(map->map[p.x + p.y * map->width],
 					1.)));
-	if (p1.z > FAR || p1.z < 0.)
-		return ;
-	if (p.x != 0)
+	if (p.x != 0 && (p1.z < FAR + NEAR && p1.z > 0.))
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x - 1 + p.y * map->width],
 						1.)));
-		if (p2.z > FAR || p2.z < 0.)
-			return ;
-		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
-			(t_point){p2.x, p2.y}, 0x00FFFFFF);
+		if (p2.z < FAR + NEAR && p2.z > 0.)
+			fdf_draw_line(ctx, (t_point){p1.x, p1.y},
+				(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
-	if (p.y + 1 != map->height)
+	if (p.y + 1 != map->height && (p1.z < FAR + NEAR && p1.z > 0.))
 	{
 		p2 = fdf_vec4tvec3(fdf_mat4xvec4(mat,
 					fdf_vec3tvec4(map->map[p.x + (p.y + 1) * map->width],
 						1.)));
-		if (p2.z > FAR || p2.z < 0.)
-			return ;
-		fdf_draw_line(ctx, (t_point){p1.x, p1.y},
-			(t_point){p2.x, p2.y}, 0x00FFFFFF);
+		if (p2.z < FAR + NEAR && p2.z > 0.)
+			fdf_draw_line(ctx, (t_point){p1.x, p1.y},
+				(t_point){p2.x, p2.y}, 0x00FFFFFF);
 	}
 }
 
