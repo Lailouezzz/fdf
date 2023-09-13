@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:25:43 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/07 16:36:50 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:22:04 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_R 114
+# define KEY_F 102
 
 #endif

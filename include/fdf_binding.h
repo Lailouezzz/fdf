@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:35:00 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/13 16:00:17 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:21:38 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef enum e_keybind {
 	KEYBIND__TRANSRIGHT,
 	KEYBIND__TRANSUP,
 	KEYBIND__TRANSDOWN,
+	KEYBIND__TRANSABOVE,
+	KEYBIND__TRANSBELLOW,
 	KEYBIND_COUNT
 }	t_keybind;
 
