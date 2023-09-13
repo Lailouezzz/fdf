@@ -6,12 +6,11 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:07:55 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/13 16:00:42 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:16:52 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 #include <time.h>
 #include <unistd.h>

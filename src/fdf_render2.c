@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:19:01 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/09/13 16:04:59 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:18:42 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	fdf_draw_line(t_rendctx *ctx, t_point p1, t_point p2, t_color c)
 	}
 	fdf_pixel_put(ctx, p1, c);
 }
-
 
 #define NEAR 2.
 #define FAR 2000.

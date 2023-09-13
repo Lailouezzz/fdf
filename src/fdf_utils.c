@@ -6,7 +6,7 @@
 /*   By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 01:50:28 by ale-boud          #+#    #+#             */
-/*   Updated: 2023/06/16 18:02:17 by ale-boud         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:18:30 by ale-boud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,9 @@ int	fdf_read_nb(int fd, int *nb)
 		return (2);
 	if (c == -1)
 		return (3);
+	sign = (2 * (c != '-') - 1);
 	if (c == '-')
-	{
-		sign = -1;
 		c = fdf_getchar(fd);
-	}
-	else
-		sign = 1;
 	nbr = 0;
 	while (c >= 0 && ft_isdigit(c))
 	{
@@ -84,7 +80,5 @@ int	fdf_read_nb(int fd, int *nb)
 	if (c <= -1 || (c != '\n' && c != ' '))
 		return (2);
 	*nb = (int)nbr * sign;
-	if (c == '\n')
-		return (1);
-	return (0);
+	return (c == '\n');
 }
