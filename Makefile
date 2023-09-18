@@ -6,7 +6,7 @@
 #    By: ale-boud <ale-boud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 23:28:51 by ale-boud          #+#    #+#              #
-#    Updated: 2023/09/18 19:37:41 by ale-boud         ###   ########.fr        #
+#    Updated: 2023/09/18 19:42:00 by ale-boud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ OBJS_BONUS := $(SRCS_BONUS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Build everything
 
 all: $(NAME)
+
+bonus: all
 
 # Mostly clean (clean everything without the end result)
 
